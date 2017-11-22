@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- head -->
+    <meta charset="utf-8">
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Basic usage demo">
+    <meta name="author" content="David Deutsch">
+    <title>
+        Basic Demo
+    </title>
+
+    <!-- Stylesheets -->
+    <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,400italic,300italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="assets/css/docs.theme.min.css">
+
+    <!-- Owl Stylesheets -->
+    <link rel="stylesheet" href="assets/owlcarousel/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/owlcarousel/assets/owl.theme.default.min.css">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <style>
+        .next, .prev {
+            display: none;
+            position: absolute;
+            top: calc(50% - 18px);
+            z-index: 3;
+            height: 36px;
+            width: 36px;
+            background: rgba(255, 255, 255, 0.74);
+        }
+        .next:hover, .prev:hover {
+            background: rgba(255, 255, 255, 0.94);
+        }
+        .next {
+            right: 0;
+        }
+        .prev {
+            left: 0;
+        }
+        .prev a{
+            display: inherit;
+            -ms-transform: rotate(270deg);
+            -webkit-transform: rotate(270deg);
+            transform: rotate(270deg);
+            background: url("index.jpg") center no-repeat;
+            width: 32px;
+            height: 34px;
+        }
+        .next a {
+            display: inherit;
+            -ms-transform: rotate(90deg);
+            -webkit-transform: rotate(90deg);
+            transform: rotate(90deg);
+            background: url("index.jpg") center no-repeat;
+            width: 32px;
+            height: 40px;
+            float: right;
+        }
+    </style>
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+
+    <!-- Yeah i know js should not be in header. Its required for demos.-->
+
+    <!-- javascript -->
+    <script src="assets/vendors/jquery.min.js"></script>
+    <script src="assets/owlcarousel/owl.carousel.js"></script>
+</head>
+<body>
+
+<!--  Demos -->
+<section id="demos">
+    <!-- CAROUSEL NAV -->
+    <nav class="next" style="display: none;">
+        <a class="customNextBtn" href="#">&nbsp;</a>
+    </nav>
+    <nav class="prev" style="display: none;">
+        <a class="customPrevBtn" href="#">&nbsp;</a>
+    </nav>
+    <div class="row">
+        <div class="large-12 columns">
+            <div class="thn owl-carousel owl-theme">
+                <div class="">
+                    <img src="index.jpg" alt="">
+                </div>
+                <div class="">
+                    <img src="index.jpg" alt="">
+                </div>
+                <div class="">
+                    <img src="index.jpg" alt="">
+                </div>
+                <div class="">
+                    <img src="index.jpg" alt="">
+                </div>
+                <div class="">
+                    <img src="index.jpg" alt="">
+                </div>
+                <div class="">
+                    <img src="index.jpg" alt="">
+                </div>
+            </div>
+            <div class="sns owl-carousel owl-theme" style="width: 200px;height: 200px;">
+                <div class="">
+                    <img src="index.jpg" alt="">
+                </div>
+                <div class="">
+                    <img src="index.jpg" alt="">
+                </div>
+                <div class="">
+                    <img src="index.jpg" alt="">
+                </div>
+                <div class="">
+                    <img src="index.jpg" alt="">
+                </div>
+                <div class="">
+                    <img src="index.jpg" alt="">
+                </div>
+                <div class="">
+                    <img src="index.jpg" alt="">
+                </div>
+                <div class="">
+                    <img src="index.jpg" alt="">
+                </div>
+            </div>
+            <script>
+                function showNav(e){
+                    if ($(".next").css("float") == "right") {
+                        $(".next").fadeIn();
+                        $(".prev").fadeIn();
+                    }
+                }
+
+                function hideNav(e){
+                    $(".next").fadeOut();
+                    $(".prev").fadeOut();
+                }
+
+                $(".owl-carousel").hover(showNav, hideNav);
+
+                $('.customNextBtn').click(function(e) {
+                    e.preventDefault();
+                    $(".owl-carousel").trigger('next.owl.carousel');
+                });
+
+                $('.customPrevBtn').click(function(e) {
+                    e.preventDefault();
+                    $(".owl-carousel").trigger('prev.owl.carousel');
+                });
+                $(document).ready(function() {
+                    var owl = $('.thn');
+                    owl.owlCarousel({
+                        stagePadding: 50,
+                        margin: 10,
+                        nav: true,
+                        loop: true,
+                        responsive: {
+                            0: {
+                                items: 1
+                            },
+                            600: {
+                                items: 3
+                            },
+                            1000: {
+                                items: 5
+                            }
+                        },
+                        autoplay:true,
+                        autoplayTimeout:3000,
+                        autoplayHoverPause:false,
+                        navigationText: [
+                            "<i class='icon-chevron-left icon-white'><</i>",
+                            "<i class='icon-chevron-right icon-white'>></i>"
+                        ],
+                        navClass: ['owl-prev', 'owl-next']
+                    })
+                    $('.sns').owlCarousel({
+                        items: 1,
+                        loop: true,
+                        margin: 10,
+                        autoplay:true,
+                        autoplayTimeout:3000,
+                        autoplayHoverPause:false,
+                    });
+                })
+            </script>
+        </div>
+    </div>
+</section>
+</body>
+</html>
