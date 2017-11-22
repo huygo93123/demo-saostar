@@ -22,43 +22,7 @@
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <style>
-        .next, .prev {
-            display: none;
-            position: absolute;
-            top: calc(50% - 18px);
-            z-index: 3;
-            height: 36px;
-            width: 36px;
-            background: rgba(255, 255, 255, 0.74);
-        }
-        .next:hover, .prev:hover {
-            background: rgba(255, 255, 255, 0.94);
-        }
-        .next {
-            right: 0;
-        }
-        .prev {
-            left: 0;
-        }
-        .prev a{
-            display: inherit;
-            -ms-transform: rotate(270deg);
-            -webkit-transform: rotate(270deg);
-            transform: rotate(270deg);
-            background: url("index.jpg") center no-repeat;
-            width: 32px;
-            height: 34px;
-        }
-        .next a {
-            display: inherit;
-            -ms-transform: rotate(90deg);
-            -webkit-transform: rotate(90deg);
-            transform: rotate(90deg);
-            background: url("index.jpg") center no-repeat;
-            width: 32px;
-            height: 40px;
-            float: right;
-        }
+
     </style>
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -73,6 +37,12 @@
     <!-- javascript -->
     <script src="assets/vendors/jquery.min.js"></script>
     <script src="assets/owlcarousel/owl.carousel.js"></script>
+    <!-- cdnjs -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/6.3.3/video-js.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/6.3.3/video.js"></script>
+    <script src="jquery.visible.min.js"></script>
+
+    <script>window.HELP_IMPROVE_VIDEOJS = false;</script>
 </head>
 <body>
 
@@ -130,6 +100,30 @@
                     <img src="index.jpg" alt="">
                 </div>
             </div>
+            <div style="background-color: #1ccacd;height: 500px;width: 500px"></div>
+            <video
+                    id="my-player"
+                    class="video-js vjs-big-play-centered vjs-16-9"
+                    controls
+                    preload="auto"
+                    poster=""
+                    data-setup=''>
+                <source src="videoplayback.mp4" type="video/mp4"></source>
+                <p class="vjs-no-js">
+                    To view this video please enable JavaScript, and consider upgrading to a
+                    web browser that
+                    <a href="http://videojs.com/html5-video-support/" target="_blank">
+                        supports HTML5 video
+                    </a>
+                </p>
+            </video>
+
+
+            <div style="background-color: #1ccacd;height: 500px;width: 500px"></div>
+            <div style="background-color: #1ccacd;height: 500px;width: 500px"></div>
+            <div style="background-color: #1ccacd;height: 500px;width: 500px"></div>
+            <div style="background-color: #1ccacd;height: 500px;width: 500px"></div>
+            <div style="background-color: #1ccacd;height: 500px;width: 500px"></div>
             <script>
                 function showNav(e){
                     if ($(".next").css("float") == "right") {
@@ -137,24 +131,29 @@
                         $(".prev").fadeIn();
                     }
                 }
-
                 function hideNav(e){
                     $(".next").fadeOut();
                     $(".prev").fadeOut();
                 }
-
                 $(".owl-carousel").hover(showNav, hideNav);
-
                 $('.customNextBtn').click(function(e) {
                     e.preventDefault();
                     $(".owl-carousel").trigger('next.owl.carousel');
                 });
-
                 $('.customPrevBtn').click(function(e) {
                     e.preventDefault();
                     $(".owl-carousel").trigger('prev.owl.carousel');
                 });
                 $(document).ready(function() {
+                    var player = videojs('my-player');
+                    function checkMedia() {
+                        if ($('video').visible(true)) {
+                            player.play();
+                        } else {
+                            player.pause();
+                        }
+                    }
+                    $(document).on('scroll', checkMedia);
                     var owl = $('.thn');
                     owl.owlCarousel({
                         stagePadding: 50,
